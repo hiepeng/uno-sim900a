@@ -9,11 +9,15 @@ const port = new SerialPort({
 const parser = new ReadlineParser({ delimiter: "\r\n" })
 port.pipe(parser);
 
-// parser.on("data", (data) => {
-//   console.log("----", data, "----");
-// });
+let i = 0;
 
-port.on('readable', function () {
-  const value = port.read()
-  console.log(value.toString())
-})
+
+parser.on("data", (data) => {
+  i = i + 1
+  console.log(i+": ",data);
+});
+
+// port.on('readable', function () {
+//   const value = port.read()
+//   console.log(value.toString())
+// })
